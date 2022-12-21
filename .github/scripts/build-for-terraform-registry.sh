@@ -19,7 +19,7 @@ cat << EOF >> terraform-provider-${NAME}_${VERSION}_manifest.json
 EOF
 
 for os_arch_str in "${OS_ARCHS[@]}";do
-os_arch=($os_atch_str)
+os_arch=($os_arch_str)
 GOOS="${os_arch[0]}"
 GOARCH="${od_arch[1]}"
 
