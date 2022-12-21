@@ -11,6 +11,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Import Terraform Registry GPG Key
+        run: echo ${{ secrets.TERRAFORM_REGISTRY_GPG }} | gpg --import
       
       - name: Build Artifacts
         uses: actions/setup-go@v3
