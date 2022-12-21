@@ -21,7 +21,7 @@ EOF
 for os_arch_str in "${OS_ARCHS[@]}";do
 os_arch=($os_arch_str)
 GOOS="${os_arch[0]}"
-GOARCH="${od_arch[1]}"
+GOARCH="${os_arch[1]}"
 
 GOOS=${GOOS} GOARCH=${GOARCH} go build -o terraform-provider-${NAME}_v${VERSION} ./cmd/terraform-provider-demo-public
 
