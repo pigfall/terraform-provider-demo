@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: '1.19'
-      - run: bash build-for-terraform-registry.sh
+      - run: bash ./github/scripts/build-for-terraform-registry.sh
 
       - name: Publish To Dedicated Repo
         env: 
