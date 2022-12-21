@@ -7,7 +7,7 @@ NAME="demo-public"
 
 # Trim the prefix 'v' of 'v1.0.0'
 VERSION=${GITHUB_REF_NAME#"v"}
-OS_ARCHS=(('windows' 'amd64') ('linux' 'amd64'))
+OS_ARCHS=('windows amd64' 'linux amd64')
 
 cat << EOF >> terraform-provider-${NAME}_${VERSION}_manifest.json
 {
@@ -18,7 +18,8 @@ cat << EOF >> terraform-provider-${NAME}_${VERSION}_manifest.json
 }
 EOF
 
-for os_arch in "${OS_ARCHS[@]}";do
+for os_arch_str in "${OS_ARCHS[@]}";do
+os_arch=($os_atch_str)
 GOOS="${os_arch[0]}"
 GOARCH="${od_arch[1]}"
 
