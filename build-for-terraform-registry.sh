@@ -8,8 +8,10 @@ NAME="demo-public"
 # Trim the prefix 'v' of 'v1.0.0'
 VERSION=${GITHUB_REF_NAME#"v"}
 
-cp ../terraform-provider-hashicups/terraform-provider-hashicups terraform-provider-${NAME}_v${VERSION}
-chmod +x terraform-provider-${NAME}_v${VERSION}
+go build -o terraform-provider-${NAME}_v${VERSION} ./cmd/terraform-provider-demo-public
+
+
+
 
 zip terraform-provider-${NAME}_${VERSION}_linux_amd64.zip terraform-provider-${NAME}_v${VERSION}
 
