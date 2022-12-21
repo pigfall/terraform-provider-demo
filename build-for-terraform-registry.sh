@@ -7,13 +7,7 @@ NAME="demo-public"
 
 # Trim the prefix 'v' of 'v1.0.0'
 VERSION=${GITHUB_REF_NAME#"v"}
-
-go build -o terraform-provider-${NAME}_v${VERSION} ./cmd/terraform-provider-demo-public
-
-
-
-
-zip terraform-provider-${NAME}_${VERSION}_linux_amd64.zip terraform-provider-${NAME}_v${VERSION}
+OS_ARCHS=(('windows' 'amd64') ('linux' 'amd64'))
 
 cat << EOF >> terraform-provider-${NAME}_${VERSION}_manifest.json
 {
@@ -23,6 +17,18 @@ cat << EOF >> terraform-provider-${NAME}_${VERSION}_manifest.json
     }
 }
 EOF
+
+for os_arch in "${OS_ARCHS[@]}";do
+GOOS="${os_arch[0]}"
+GOARCH="${od_arch[1]}"
+
+GOOS=${GOOS} GOARCH=${GOARCH} go build -o terraform-provider-${NAME}_v${VERSION} ./cmd/terraform-provider-demo-public
+
+zip terraform-provider-${NAME}_${VERSION}_${GOOS}_${GOARCH}.zip terraform-provider-${NAME}_v${VERSION}
+done
+
+
+
 shasum -a 256 *.zip terraform-provider-${NAME}_${VERSION}_manifest.json > terraform-provider-${NAME}_${VERSION}_SHA256SUMS
 
 gpg --detach-sign terraform-provider-${NAME}_${VERSION}_SHA256SUMS
