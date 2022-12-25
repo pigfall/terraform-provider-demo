@@ -22,7 +22,7 @@ func(*Provider)	Schema(ctx context.Context, req tfprovider.SchemaRequest, resp *
 }
 
 func (p *Provider) Metadata(_ context.Context, _ tfprovider.MetadataRequest, resp *tfprovider.MetadataResponse) {
-  resp.TypeName = "demo-public"
+  resp.TypeName = "demo"
 }
 
 func(*Provider)	Configure(context.Context, tfprovider.ConfigureRequest, *tfprovider.ConfigureResponse){
